@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
 const [data, setData] = useState(null);
+const [countryName, setCountryName] = useState("")
 const [dataCountry, setDataCountry] = useState(null);
 const [countryInfo, setCountryInfo] = useState("")
 
@@ -35,20 +36,18 @@ useEffect( () => {
 
 },[]) 
 
-useEffect( () => {
+// useEffect( () => {
 
-  axios
-    .get(`https://api.covid19api.com/live/country/south-africa`)
-    .then((response) => {
+//   axios
+//     .get(`https://api.covid19api.com/live/country/${countryName}`)
+//     .then((response) => {
 
-      setCountryInfo(response.data) 
-    })
+//       setCountryInfo(response.data) 
+//     })
 
-},[]) 
+// },[countryName]) 
 
 
-
-console.log(dataCountry)
 
 
 
@@ -56,7 +55,7 @@ console.log(dataCountry)
   return (
     <div className="App">
      {data && <Home  data={data}/>}
-     {data && <Buscador  paises={dataCountry} />}
+     {dataCountry && <Buscador  paises={dataCountry} data={countryInfo}/>}
     </div>
   );
 }
